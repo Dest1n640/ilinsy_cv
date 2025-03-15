@@ -46,8 +46,6 @@ plt.subplot(224)
 plt.title("image2, third")
 plt.imshow(image2[:, :, 2])
 
-plt.tight_layout()  # чтобы подправить отступы
-
 
 print(f"Image1 amount of figures: {count_objects(image1)}")
 arr_img2 = [
