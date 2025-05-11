@@ -12,7 +12,6 @@ def is_car_like(contours, hierarchy):
         if area < 100:
             continue
 
-        # Аппроксимированная форма
         approx = cv2.approxPolyDP(cnt, 0.02 * cv2.arcLength(cnt, True), True)
 
         # Поиск колёс — почти круги
@@ -42,18 +41,15 @@ while True:
     if not ret:
         break
 
-    # Преобразование в серый и бинаризация
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
 
-    # Нахождение контуров
     contours, hierarchy = cv2.findContours(
         thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
     )
 
-    # Проверка на наличие "машинки"
     if is_car_like(contours, hierarchy):
         matched_frames += 1
 
 cap.release()
-print("Кадров с распознанной машинкой:", matched_frames)
+print("Кадров с моим изображением", matched_frames)
